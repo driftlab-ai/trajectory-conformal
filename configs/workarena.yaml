@@ -1,0 +1,7 @@
+_base_: base.yaml
+benchmark: workarena           # requires browsergym-workarena, Playwright and a ServiceNow instance
+T: 15                          # evaluation horizon (steps)
+max_steps: 30                  # agent step cap
+pool_limit: 235                # first 235 tasks of the L2 task list
+prompt_file: prompts/react_workarena.txt
+env: {headless: true, max_obs_chars: 4000}

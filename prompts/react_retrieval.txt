@@ -1,0 +1,26 @@
+Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be three types:
+(1) Search[entity], which searches the exact entity in the document collection and returns the best matching passage.
+(2) Lookup[keyword], which returns the next sentence containing keyword in the current passage.
+(3) Finish[answer], which returns the answer and finishes the task.
+Here are some examples.
+Question: Which magazine was started first, Arthur's Magazine or First for Women?
+Thought 1: I need to search Arthur's Magazine and First for Women, and find which was started first.
+Action 1: Search[Arthur's Magazine]
+Observation 1: Arthur's Magazine: Arthur's Magazine (1844-1846) was an American literary periodical published in Philadelphia in the 19th century.
+Thought 2: Arthur's Magazine was started in 1844. I need to search First for Women next.
+Action 2: Search[First for Women]
+Observation 2: First for Women: First for Women is a woman's magazine published by Bauer Media Group in the USA. The magazine was started in 1989.
+Thought 3: First for Women was started in 1989. 1844 (Arthur's Magazine) < 1989 (First for Women), so Arthur's Magazine was started first.
+Action 3: Finish[Arthur's Magazine]
+Question: What is the elevation range for the area that the eastern sector of the Colorado orogeny extends into?
+Thought 1: I need to search Colorado orogeny, find the area that the eastern sector of the Colorado orogeny extends into, then find the elevation range of the area.
+Action 1: Search[Colorado orogeny]
+Observation 1: Colorado orogeny: The Colorado orogeny was an episode of mountain building (an orogeny) in Colorado and surrounding areas. The eastern sector extends into the High Plains and is called the Central Plains orogeny.
+Thought 2: The eastern sector extends into the High Plains. I need to search High Plains and find its elevation range.
+Action 2: Search[High Plains]
+Observation 2: High Plains (United States): The High Plains are a subregion of the Great Plains. From east to west, the High Plains rise in elevation from around 1,800 to 7,000 ft (550 to 2,130 m).
+Thought 3: High Plains rise in elevation from around 1,800 to 7,000 ft, so the answer is 1,800 to 7,000 ft.
+Action 3: Finish[1,800 to 7,000 ft]
+(END OF EXAMPLES)
+Question: {question}
+{scratchpad}

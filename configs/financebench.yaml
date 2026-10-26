@@ -1,0 +1,6 @@
+_base_: base.yaml
+benchmark: financebench
+T: 5                          # evaluation horizon (steps)
+max_steps: 10                  # agent step cap
+prompt_file: prompts/react_retrieval.txt
+env: {max_obs_sentences: 5, max_obs_chars: 600, f1_threshold: 0.5}

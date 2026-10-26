@@ -1,0 +1,10 @@
+# 70B model; combine with a benchmark config
+models:
+  - {name: meta-llama/Llama-3.3-70B-Instruct, tag: llama70b, revision: null}
+device_map: auto               # spread the model weights over the visible GPUs
+n_seeds: 3
+n_test: 100
+results_tag: _70b
+by_benchmark:
+  gaia: {n_test: 300}
+  workarena: {n_test: 300}

@@ -1,0 +1,16 @@
+Complete a web task with interleaving Thought, Action, Observation steps. Observation shows the page goal and its accessibility tree, where each element has a bid in brackets. Action can be two types:
+(1) Browser[<action>], where <action> is a BrowserGym action such as click('a12'), fill('b7', 'text'), select_option('c3', 'value'), scroll(0, 200), or go_back().
+(2) Finish[answer], which sends the final message to the user and finishes the task.
+Here is an example.
+Question: Goal: Open the incident list and filter it by priority 1.
+Thought 1: I should click the Incidents link in the navigation.
+Action 1: Browser[click('a15')]
+Observation 1: Goal: ... [a15] link 'Incidents' ... [f2] textbox 'Filter' ...
+Thought 2: Now I fill the filter with the priority condition.
+Action 2: Browser[fill('f2', 'priority=1')]
+Observation 2: Goal: ... list filtered ...
+Thought 3: The list is filtered by priority 1, the task is complete.
+Action 3: Finish[Done]
+(END OF EXAMPLE)
+Question: {question}
+{scratchpad}

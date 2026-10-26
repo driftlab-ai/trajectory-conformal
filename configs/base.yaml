@@ -1,0 +1,52 @@
+seed: 0                        # base seed for every draw
+eps: 0.10                      # nominal trajectory miscoverage
+gate_eps_list: [0.05, 0.10, 0.20]   # levels at which the calibratability gate is reported
+delta: 0.05                    # confidence level of the finite-sample slack term
+n_cal: 1000                    # calibration initial-state scores per seed
+n_cal_pool: null               # calibration states to generate; null = n_cal * n_seeds
+n_test: 500                    # test trajectories
+n_prm_bank: 1000               # judge-labelled trajectories for PRM training
+m_drift: 200                   # trajectories in the held-out drift bank
+n_seeds: 10                    # calibration seeds
+cal_pool_fraction: 0.5         # fraction of the task pool reserved for calibration states
+bootstrap_resamples: 10000     # paired bootstrap resamples
+drift_bootstrap_resamples: 1000  # bootstrap resamples for drift standard errors
+tau_splits: 20                 # random half-splits of the drift bank for tau
+perturbation_factors: [0.5, 1.0, 1.5]   # multipliers of the drift estimate in the DC schedule
+drift_null_perms: 50           # permutations for the marginal-drift null distribution
+gamma_aci: 0.05                # ACI online step size
+score_keys: [semant, selfeval] # score keys evaluated; PRM keys are added when present
+model_average_se: mean_of_model_ses   # SE of the two-model mean: mean_of_model_ses or pooled
+results_tag: ""                # suffix of the results/drift/horizon/mechanism files
+device: auto                   # cuda if available, else cpu
+dtype: bfloat16                # LM weight dtype on cuda
+out_dir: runs
+pool_limit: 0                  # tasks loaded per benchmark; 0 = whole pool
+data_cache_dir: ""             # Hugging Face cache directory; "" = default
+models:
+  - {name: meta-llama/Llama-3.1-8B-Instruct, tag: llama8b, revision: null}
+  - {name: Qwen/Qwen2.5-7B-Instruct, tag: qwen7b, revision: null}
+agent: {max_new_tokens: 128, max_prompt_tokens: 4096}
+semant:                        # semantic-entropy score
+  n_samples: 5
+  temperature: 0.7
+  entail_threshold: 0.5
+  nli_model: cross-encoder/nli-deberta-v3-large
+  nli_max_length: 512
+selfeval: true                 # self-evaluation score
+prm:                           # process-reward-model head on frozen encoder embeddings
+  encoder: cross-encoder/nli-deberta-v3-large
+  judge_model: meta-llama/Llama-3.1-8B-Instruct
+  judge_tag: llama-judge
+  score_key: prm
+  label_key: judge_label
+  lr: 2.0e-5
+  weight_decay: 1.0e-4
+  batch_size: 32
+  epochs: 5
+  val_fraction: 0.2
+  split_seed: 0
+  ece_bins: 10
+  patience: 1
+  density_halfwidth: 0.05
+  density_bound: 8.5

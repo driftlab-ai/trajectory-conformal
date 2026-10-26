@@ -1,0 +1,7 @@
+# Cross-family PRM judge; combine with a benchmark config
+prm:
+  judge_model: Qwen/Qwen2.5-7B-Instruct
+  judge_tag: qwen-judge
+  score_key: prm_qwen
+  label_key: judge_label_qwen
+results_tag: _qwen_judge       # suffix of the results/drift files written by this run

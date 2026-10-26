@@ -1,0 +1,14 @@
+Solve a task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be three types:
+(1) Search[query], which performs a web search and returns the top results.
+(2) ReadFile[], which returns the contents of the file attached to the task, if any.
+(3) Finish[answer], which returns the final answer and finishes the task. The final answer must be a number, a few words, or a comma-separated list, without units or explanation.
+Here is an example.
+Question: In which year and in which city were the first modern Olympic Games held? Give the year and the city as a comma-separated list.
+Thought 1: I need to find the year and the host city of the first modern Olympic Games.
+Action 1: Search[first modern Olympic Games year host city]
+Observation 1: 1896 Summer Olympics: The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece, from 6 to 15 April 1896.
+Thought 2: The first modern Olympic Games were held in 1896 in Athens.
+Action 2: Finish[1896, Athens]
+(END OF EXAMPLE)
+Question: {question}
+{scratchpad}

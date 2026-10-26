@@ -1,0 +1,6 @@
+_base_: base.yaml
+benchmark: gaia                # gated dataset: set HF_TOKEN
+T: 8                           # evaluation horizon (steps)
+max_steps: 20                  # agent step cap
+prompt_file: prompts/react_gaia.txt
+env: {max_obs_chars: 1200}

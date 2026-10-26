@@ -1,0 +1,7 @@
+_base_: hotpotqa.yaml
+# Horizon-controlled experiment: chained 2-hop questions with the scratchpad cleared at each block boundary
+horizons: [2, 3, 5, 8, 10, 15, 20, 30, 50]
+block_len: 3
+n_seeds: 3
+n_test: 500
+results_tag: _horizon          # suffix of the results/drift/horizon files written by this run

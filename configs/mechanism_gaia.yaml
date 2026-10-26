@@ -1,0 +1,9 @@
+_base_: gaia.yaml
+# Mechanism ablation: eta_cert on regenerated test trajectories under context reset and tool-output randomization
+mechanism:
+  floor_setting: reset_every_1   # setting whose eta_cert is subtracted in floor_adjusted_fraction
+  settings:
+    - {name: full_agent, context_reset_every: 0, tool_output_randomization: 0.0}
+    - {name: reset_every_3, context_reset_every: 3, tool_output_randomization: 0.0}
+    - {name: reset_every_1, context_reset_every: 1, tool_output_randomization: 0.0}
+    - {name: tool_randomization_50, context_reset_every: 0, tool_output_randomization: 0.5}
